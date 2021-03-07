@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>HOME</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://localhost/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script language="Javascript" src="jquery.js"></script>
+    <script type="text/JavaScript" src='state.js'></script>
+
+<script>
+function view()
+{
+    var city=document.getElementById('secondlist').value;
+    var group=document.getElementById('group').value;
+    if(city.length==0){
+      alert("NULL Input!");
+    }
+    else{
+    var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("view").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET","view.php?c="+city+"&g="+group, true);
+  xhttp.send();
+}
+}
+</script>
+</head>
+<body style="background-image:url(bg.png);background-size: 100% 100%;">
+        <div style="background:rgba(0, 0, 0, 0.5);height:50px;;">
+
+                <center><h1 style="color:white;"><img src="icon.png" width="30px" height="30px" style="float:left;margin:10px 5px;">Blood Bank</h1></center>
+                </div>
+                <div id="contain" class="container-fluid">
+
+                        <div class="row" >
+                        <div class="col-sm-12"">
+                            <div style="background-color: rgba(214, 162, 4, 0.76);min-height:50px;margin: 35px 10px;border-radius: 5px;padding: 10px;">
+                         
+                              <table style="width: 60%;float:right;">
+                                
+                           <tr>
+                             <td>
+                                <a href="register.html">New Registration</a>
+                             </td>
+                             <td>
+                              <select id="listBox" onchange='selct_district(this.value)' style="width: 90%;border-radius:5px;"></select>
+                             </td>
+                             <td>
+                              <select id='secondlist' style="width: 90%;border-radius:5px;"></select>
+                             </td>
+                             <td>
+                                <select  id="group" style="width: 90%;border-radius:5px;">
+                                    <option value="A Possitive">A Possitive</option>
+                                    <option value="B Possitive">B Possitive</option>
+                                    <option value="AB Possitive">AB Possitive</option>
+                                    <option value="O Possitive">O Possitive</option>
+                                    
+                                    <option value="A Negative">A Negative</option>
+                                    <option value="B Negative">B Negative</option>
+                                    <option value="AB Negative">AB Negative</option>
+                                    <option value="O Negative">O Negative</option>
+                                   
+                                  </select>
+                             </td>
+                             <td>
+                            <button onclick="view()" style="padding: 2px;border-radius:5px;background-color:blue;color: white;">Search</button>
+                             </td>
+                           </tr>
+                         </table>
+                        </div>
+                        <div id="view" style="min-height:550px;margin: 35px 10px;border-radius: 5px;">
+                         
+                         
+
+                        </div>
+                </div>
+                </div>
+                </div>   
+                <div style="background:rgba(0, 0, 0, 0.5);height:50px;">
+                  <center><h1 style="color:white;">Thank You</h1></center>
+          </div>
+                        
+          <div id="dumdiv" align="center" style=" font-size: 10px;color: #dadada;">
+            <a id="dum" style="padding-right:0px; text-decoration:none;color: green;text-align:center;" href=""></a>
+          </div>
+</body>
+</html>

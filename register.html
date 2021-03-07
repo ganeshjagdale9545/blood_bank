@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Registration</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://localhost/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script language="Javascript" src="jquery.js"></script>
+    <script type="text/JavaScript" src='state.js'></script>
+<script>
+function submit(){
+    var state=document.getElementById('listBox').value;
+    var city=document.getElementById('secondlist').value;
+    var name=document.getElementById('name').value;
+    var email=document.getElementById('email').value;
+    var mobile=document.getElementById('mobile').value;
+    var group=document.getElementById('group').value;
+    
+    if((state=="SELECT STATE") ||(city.length==0) ||(name.length==0)||(email.length==0)||(mobile.length==0))
+    {
+    alert("Null Input!");
+    }
+    else{
+        if(email.search("@")==-1 ||email.search(".com")==-1)
+      {
+         alert("Invalid Email!")
+      }
+      else{
+          if(mobile.length<10 || mobile.length>10){
+              alert("Invalid Mobile Number!");
+          }
+          else{
+              
+                var xhttp = new XMLHttpRequest();
+                 xhttp.onreadystatechange = function() {
+                 if (this.readyState == 4 && this.status == 200) {
+                 document.getElementById("reg").innerHTML =
+                 this.responseText;
+                 }
+                     };
+                   xhttp.open("GET","register.php?s="+state+"&c="+city+"&n="+name+"&e="+email+"&m="+mobile+"&g="+group, true);
+                     xhttp.send();
+                }
+                  }
+              }
+}
+function exist(){
+alert("Username Alredy Exist");
+}
+function suc(){
+alert("Register Sucsessfuly!");
+}
+</script>
+</head>
+<body style="background-image:url(bg.png);background-size: 100% 100%;">
+        <div style="background:rgba(0, 0, 0, 0.5);height:50px;;">
+
+                <center><h1 style="color:white;"><img src="icon.png" width="30px" height="30px" style="float:left;margin:10px 5px;">Blood Bank</h1></center>
+                </div>
+                <div id="contain" class="container-fluid">
+
+                        <div class="row" >
+                        <div class="col-sm-4"">
+                            <div style="background-color: rgba(219, 203, 157, 0.568);min-height: 620px;margin: 35px 10px;border-radius: 5px;">
+                         <center> <img src="blood.png" width="100px" style="margin:0px 0px 0px 0px;"> </center>
+<center><h2 style="color: rgb(231, 39, 25);">Registration</h2></center>
+                                   
+                                   <div id="selection">
+                                       <center>
+                                       <table style="width: 90%">
+                                           <tr>
+                                               <td><br>
+                                    State 
+                                </td>
+                                <td><br>
+                                    <select id="listBox" onchange='selct_district(this.value)' style="width: 90%;border-radius:5px;"></select>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td><br>
+                                City </td>
+                                <td><br>
+                                    <select id='secondlist' style="width: 90%;border-radius:5px;"></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br>
+                                        Name
+                                    </td>
+                                    <td>
+                                        <br>
+                                        <input type="text" id="name" maxlength="50" style="width: 90%;border-radius:5px;text-transform:uppercase;" onkeypress="return (event.charCode > 64 && 
+                                        event.charCode < 91) || (event.charCode==32) || (event.charCode > 96 && event.charCode < 123)">
+                                    </td>
+                                </tr>
+                                    <tr>
+                                    <td>
+                                        <br>
+                                        Email
+                                    </td>
+                                    
+                                    <td>
+                                        <br>
+                                        <input type="text" id="email" maxlength="100" style="width: 90%;border-radius:5px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br>
+                                        Mobile
+                                    </td>
+                                    <td>
+                                        <br>
+                                        <input type="text" id="mobile" style="width: 90%;border-radius:5px;" 
+                                         maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br>
+                                        Blood Group
+                                    </td>
+                                    <td>
+                                        <br>
+                                        <select  id="group" style="width: 90%;border-radius:5px;">
+                                                <option value="A Possitive">A Possitive</option>
+                                                <option value="B Possitive">B Possitive</option>
+                                                <option value="AB Possitive">AB Possitive</option>
+                                                <option value="O Possitive">O Possitive</option>
+                                                
+                                                <option value="A Negative">A Negative</option>
+                                                <option value="B Negative">B Negative</option>
+                                                <option value="AB Negative">AB Negative</option>
+                                                <option value="O Negative">O Negative</option>
+                                               
+                                              </select>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <br>
+                                    </td>
+                                    <td>
+                                        <br>
+                                        <button id="s" onclick="submit()" style="padding: 2px;border-radius:5px;background-color:blue;color: white;">Submit</button>
+                                    </td>
+                                </tr>
+                                  </table></center>
+                                  <br>
+                                   </div>
+                                   <div id="dumdiv" align="center" style=" font-size: 10px;color: #dadada;">
+                                     <a id="dum" style="padding-right:0px; text-decoration:none;color: green;text-align:center;" href=""></a>
+                                   </div>
+                                   <div id="contain1"></div>
+                                </div>
+                        </div>
+                        </div>
+                </div>
+                <div style="background:rgba(0, 0, 0, 0.5);height:50px;">
+                        <center><h1 style="color:white;"></h1></center>
+                </div>
+                <div id="reg"></div>
+</body>
+</html>
